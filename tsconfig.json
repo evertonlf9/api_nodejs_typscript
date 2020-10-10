@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "module": "commonjs",
+    "outDir": "dist",
+    "removeComments": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "es6",
+    "moduleResolution": "node",
+    "paths": {
+      "@daos/*": [
+        "src/app/daos/*"
+      ],
+      "@entities/*": [
+        "src/app/entities/*"
+      ],
+      "@shared/*": [
+        "src/app/shared/*"
+      ],
+      "@server": [
+        "src/app/server"
+      ]
+    },
+    "types": [
+      "node"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ]
+  },
+  "include": [
+    "src/**/*.ts",
+    "spec/**/*.ts", "src/config/database.js"
+  ],
+  "exclude": [
+    "src/public/"
+  ]
+}

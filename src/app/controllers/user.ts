@@ -4,7 +4,7 @@ import UserRepository from '../repository/user';
 import operatorsAliases from '../../config/operatorsAliases.config';
 
 class UserController  {
-    
+
     /**
      * @api {get} /api/v1/user QueryUser
      * @apiName QueryUser
@@ -22,20 +22,20 @@ class UserController  {
      * @apiSuccess {String} RG  RG of the User.
      * @apiSuccess {String} username  Username of the User.
      * @apiSuccess {String} password  Password of the User.
-     * 
+     *
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *     {
      *       "id": 1,
-     *       "first_name": "John", 
-     *       "last_name": "Doe", 
-     *       "rg": "45.987.632-5", 
-     *       "cpf":"589.652.324-52", 
-     *       "email": "teste@mail.com", 
-     *       "login": "clauid.ferraz", 
+     *       "first_name": "John",
+     *       "last_name": "Doe",
+     *       "rg": "45.987.632-5",
+     *       "cpf":"589.652.324-52",
+     *       "email": "teste@mail.com",
+     *       "login": "clauid.ferraz",
      *       "password": "dsjsdkf#4kgdkg"
      *     }
-     * 
+     *
      * @apiError UserNotFound The id of the User was not found.
      *
      * @apiErrorExample Error-Response:
@@ -46,7 +46,7 @@ class UserController  {
      */
     static query (req: Request | any, res: Response)  {
         let field = 'id', order = 'ASC';
-        if(req.query.orderby && req.query.orderby !== "") {
+        if(req.query.orderby && req.query.orderby !== '') {
             const orderBy = req.query.orderby.split(',');
             field = orderBy[0];
             order = orderBy[1].toUpperCase();
@@ -59,11 +59,11 @@ class UserController  {
         const where = `WHERE (User.first_name LIKE 'Schmidt' OR User.last_name LIKE '${req.query.search}')`;
         const sql = `SELECT ${fields} FROM Users AS User ${ (req.query.search && req.query.search !== '') ? where : ''.trim()} ${orderBy} ${paginate}`;
         const queryTypes = { nest: true, type: QueryTypes.SELECT };
-        const sqlCount = "select count(*) from Users";
+        const sqlCount = 'select count(*) from Users';
 
         UserRepository.query(sql, queryTypes, sqlCount)
         .then((registers) => res.json(registers))
-        .catch((error) => res.json(error)); 
+        .catch((error) => res.json(error));
     }
 
     /**
@@ -84,20 +84,20 @@ class UserController  {
      * @apiSuccess {String} RG  RG of the User.
      * @apiSuccess {String} username  Username of the User.
      * @apiSuccess {String} password  Password of the User.
-     * 
+     *
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *     {
      *       "id": 1,
-     *       "first_name": "John", 
-     *       "last_name": "Doe", 
-     *       "rg": "45.987.632-5", 
-     *       "cpf":"589.652.324-52", 
-     *       "email": "teste@mail.com", 
-     *       "login": "clauid.ferraz", 
+     *       "first_name": "John",
+     *       "last_name": "Doe",
+     *       "rg": "45.987.632-5",
+     *       "cpf":"589.652.324-52",
+     *       "email": "teste@mail.com",
+     *       "login": "clauid.ferraz",
      *       "password": "dsjsdkf#4kgdkg"
      *     }
-     * 
+     *
      * @apiError UserNotFound The id of the User was not found.
      *
      * @apiErrorExample Error-Response:
@@ -109,7 +109,7 @@ class UserController  {
     static GetUsers (req: Request |  any, res: Response)  {
         // ?page=0&size=10&search=&orderby=id,asc
         let field = 'id', order = 'ASC';
-        if(req.query.orderby && req.query.orderby !== "") {
+        if(req.query.orderby && req.query.orderby !== '') {
             const orderBy = req.query.orderby.split(',');
             field = orderBy[0];
             order = orderBy[1].toUpperCase();
@@ -127,7 +127,7 @@ class UserController  {
 
         const query = {
             attributes: ['id', 'first_name', 'last_name', 'email', 'rg', 'cpf', 'login', 'password'],
-            where: where,
+            where,
             limit: parseInt(req.query.size) || 100,
             offset: (parseInt(req.query.page) * parseInt(req.query.size) || 0),
             order: [[field, order]]
@@ -135,9 +135,9 @@ class UserController  {
 
         UserRepository.getUsers(query)
         .then((registers) => res.json(registers))
-        .catch((error) => res.json(error));      
-    } 
-    
+        .catch((error) => res.json(error));
+    }
+
     /**
      * @api {get} /api/v1/user:id GetById
      * @apiName GetById
@@ -153,20 +153,20 @@ class UserController  {
      * @apiSuccess {String} RG  RG of the User.
      * @apiSuccess {String} username  Username of the User.
      * @apiSuccess {String} password  Password of the User.
-     * 
+     *
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 200 OK
      *     {
      *       "id": 1,
-     *       "first_name": "John", 
-     *       "last_name": "Doe", 
-     *       "rg": "45.987.632-5", 
-     *       "cpf":"589.652.324-52", 
-     *       "email": "teste@mail.com", 
-     *       "login": "clauid.ferraz", 
+     *       "first_name": "John",
+     *       "last_name": "Doe",
+     *       "rg": "45.987.632-5",
+     *       "cpf":"589.652.324-52",
+     *       "email": "teste@mail.com",
+     *       "login": "clauid.ferraz",
      *       "password": "dsjsdkf#4kgdkg"
      *     }
-     * 
+     *
      * @apiError UserNotFound The id of the User was not found.
      *
      * @apiErrorExample Error-Response:
@@ -193,7 +193,7 @@ class UserController  {
      * @apiParam {String} RG  RG of the User.
      * @apiParam {String} username  Username of the User.
      * @apiParam {String} password  Password of the User.
-     * 
+     *
      * @apiSuccess {NUmber} id User identifier.
      * @apiSuccess {String} firstname Firstname of the User.
      * @apiSuccess {String} lastname  Lastname of the User.
@@ -202,20 +202,20 @@ class UserController  {
      * @apiSuccess {String} RG  RG of the User.
      * @apiSuccess {String} username  Username of the User.
      * @apiSuccess {String} password  Password of the User.
-     * 
+     *
      * @apiSuccessExample Success-Response:
      *     HTTP/1.1 201 OK
      *     {
      *       "id": 1,
-     *       "first_name": "John", 
-     *       "last_name": "Doe", 
-     *       "rg": "45.987.632-5", 
-     *       "cpf":"589.652.324-52", 
-     *       "email": "teste@mail.com", 
-     *       "login": "clauid.ferraz", 
+     *       "first_name": "John",
+     *       "last_name": "Doe",
+     *       "rg": "45.987.632-5",
+     *       "cpf":"589.652.324-52",
+     *       "email": "teste@mail.com",
+     *       "login": "clauid.ferraz",
      *       "password": "dsjsdkf#4kgdkg"
      *     }
-     * 
+     *
      * @apiError UserNotFound The id of the User was not found.
      *
      * @apiErrorExample Error-Response:
@@ -224,7 +224,7 @@ class UserController  {
      *       "error": "UserNotFound"
      *     }
      */
-    static createUser (req: Request, res: Response)  {        
+    static createUser (req: Request, res: Response)  {
         UserRepository.createUser(req.body)
         .then((registers) => res.json(registers))
         .catch((error) => res.status(201).json(error));
@@ -242,7 +242,7 @@ class UserController  {
      * @apiParam {String} RG  RG of the User.
      * @apiParam {String} username  Username of the User.
      * @apiParam {String} password  Password of the User.
-     * 
+     *
      * @apiSuccess {NUmber} id User identifier.
      * @apiSuccess {String} firstname Firstname of the User.
      * @apiSuccess {String} lastname  Lastname of the User.
@@ -251,7 +251,7 @@ class UserController  {
      * @apiSuccess {String} RG  RG of the User.
      * @apiSuccess {String} username  Username of the User.
      * @apiSuccess {String} password  Password of the User.
-     */    
+     */
     static edit (req: Request, res: Response)  {
         const query = {where: {id:req.params.id}}
         UserRepository.update({...req.body}, query)
@@ -271,7 +271,7 @@ class UserController  {
      * @apiParam {String} RG  RG of the User.
      * @apiParam {String} username  Username of the User.
      * @apiParam {String} password  Password of the User.
-     * 
+     *
      * @apiSuccess {NUmber} id User identifier.
      * @apiSuccess {String} firstname Firstname of the User.
      * @apiSuccess {String} lastname  Lastname of the User.

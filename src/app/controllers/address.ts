@@ -12,14 +12,14 @@ class AddressController  {
    *  @apiParam {Number} id Users unique ID.
    *
    * @apiSuccess {NUmber} id User identifier.
-   * 
+   *
    * @apiSuccessExample Success-Response:
    *     HTTP/1.1 200 OK
    *     {
    *       "id": 1,
-   *       "first_name": "John", 
+   *       "first_name": "John",
    *     }
-   * 
+   *
    * @apiError UserNotFound The id of the User was not found.
    *
    * @apiErrorExample Error-Response:

@@ -6,23 +6,23 @@ class UserRepository {
     // https://sequelize.org/master/manual/raw-queries.html
     static query(sql: any, queryTypes: any, sqlCount?: any, queryTypesCount?: any) {
         return new Promise((resolve, reject) => BaseRepository
-            .query(db, sql, queryTypes, sqlCount, (queryTypesCount || queryTypes)) 
+            .query(db, sql, queryTypes, sqlCount, (queryTypesCount || queryTypes))
             .then((result) => resolve(result))
             .catch((err) => reject(err)));
     }
 
     static getUsers(query: any) {
         return new Promise((resolve, reject) => BaseRepository
-            .getAll(User, query) 
+            .getAll(User, query)
             .then((result) => resolve(result))
             .catch((err) => reject(err)));
     }
-    
+
     static getById(id: number) {
         return new Promise((resolve, reject) => BaseRepository
             .getById(User, id)
             .then((result) => resolve(result))
-            .catch((err) => reject(err))); 
+            .catch((err) => reject(err)));
     }
 
     static createUser(params: any) {
@@ -32,9 +32,9 @@ class UserRepository {
         .catch((err) => reject(err)));
     }
 
-    static update(params: any, query: any) {      
+    static update(params: any, query: any) {
         return new Promise((resolve, reject) => BaseRepository
-            .update(User, params, query) 
+            .update(User, params, query)
             .then((result) => resolve(result))
             .catch((err) => reject(err)));
     }

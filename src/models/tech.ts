@@ -24,11 +24,11 @@ const TechModel =  (sequelize: any, DataTypes: any) => {
     const TechModel: any = sequelize.define('Tech', {
       name: DataTypes.STRING(100),
     });
-    
+
     TechModel.associate = (models: any) => {
       TechModel.belongsToMany(models.TechModel, {
         foreignKey: 'tech_id',
-        through: 'user_techs', 
+        through: 'user_techs',
         as: 'users'
       });
     };

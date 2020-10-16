@@ -3,7 +3,8 @@
 node_modules
 /dist
 /doc
-/src/temp
+/logs
+/src/tmp
 
 # local env files
 .env.local
@@ -15,6 +16,7 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 yarn.lock*
+package-lock.json*
 
 # Editor directories and files
 .idea

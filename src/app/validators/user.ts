@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import { check, body, param, query, validationResult } from 'express-validator'; 
+import { check, body, param, query, validationResult } from 'express-validator';
 import Errors from '../middlewares/Errors';
 import RouterUser from '../controllers/user';
 
-//https://express-validator.github.io/docs/
-//https://express-validator.github.io/docs/custom-validators-sanitizers.html
-//https://express-validator.github.io/docs/check-api.html
+// https://express-validator.github.io/docs/
+// https://express-validator.github.io/docs/custom-validators-sanitizers.html
+// https://express-validator.github.io/docs/check-api.html
 // https://auth0.com/blog/express-validator-tutorial/
 
 export const Insert = {
@@ -182,7 +182,7 @@ export const UpdatetRegisterUser = {
                 .isLength({ min: 5, max: 255 })
     ],
     handler: async (req: Request, res: Response) => {
-        const errors = validationResult(req);                
+        const errors = validationResult(req);
         if (!errors.isEmpty())
             return Errors(res, 422, errors.array());
 

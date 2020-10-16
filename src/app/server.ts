@@ -37,7 +37,7 @@ const store = new FileStore({
     path: path.resolve(__dirname, '../tmp')
 });
 
-const privateKey = fs.readFileSync(path.resolve(__dirname, '../../public/private.pem'), 'utf8'); 
+const privateKey = fs.readFileSync(path.resolve(__dirname, '../../public/private.pem'), 'utf8');
 const csrfProtection = csrf({
     cookie: {
       key: '_csrf',
@@ -58,11 +58,11 @@ app.use(bodyParser.json({ limit: '200mb' }));
 app.disable('x-powered-by');
 app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(express.static('public'));
-app.use(express.static("doc"));
+app.use(express.static('doc'));
 
 app.use(compression());
 app.use(corsMiddleware);
-app.options('*', corsMiddleware);  
+app.options('*', corsMiddleware);
 
 // Show routes called in console during development
 if (process.env.NODE_ENV === 'development') {
@@ -76,12 +76,12 @@ if (process.env.NODE_ENV === 'production') {
 
 if (process.env.NODE_ENV !== 'test') {
   app.use(session({
-    name: "SESSION_ID",
+    name: 'SESSION_ID',
     secret: privateKey,
     resave: false,
     saveUninitialized: true,
     unset: 'destroy',
-    store: store,
+    store,
     cookie: {
         sameSite: true,
         domain: useDomainForCookies ? host : undefined
@@ -94,12 +94,12 @@ app.use(Header);
 app.post('/api/authenticate', Auth);
 
 app.get('/api', (req, res) => {
-  res.json({ message: 'Node BFF' }); 
+  res.json({ message: 'Node BFF' });
 });
 
 // Add APIs
 if (process.env.NODE_ENV !== 'test') {
-  app.use(IsAuthorized);  
+  app.use(IsAuthorized);
   app.use('/api/v1', csrfProtection, BaseRouter);
 }
 
@@ -111,7 +111,7 @@ if (process.env.NODE_ENV === 'test') {
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     logger.error(err.message, err);
     return res.status(NOT_FOUND).json({
-        errors: err, 
+        errors: err,
     });
 });
 

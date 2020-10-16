@@ -18,10 +18,10 @@ const UserModel =  (sequelize: any, DataTypes: any) => {
 
       User.belongsToMany(models.TechModel, {
         foreignKey: 'user_id',
-        through: 'user_techs', 
+        through: 'user_techs',
         as: 'techs'
       });
-    };    
+    };
 
     return User;
 }
@@ -29,7 +29,7 @@ const UserModel =  (sequelize: any, DataTypes: any) => {
 export default UserModel;
 
 
-  
+
 // const { Model, DataTypes } = require('sequelize');
 
 // import Sequelize from 'sequelize';

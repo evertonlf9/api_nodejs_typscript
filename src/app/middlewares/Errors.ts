@@ -1,7 +1,7 @@
-import { StatusCodes, BAD_REQUEST } from "http-status-codes";
+import { StatusCodes, BAD_REQUEST } from 'http-status-codes';
 import { Response } from 'express';
 
-const errors = (res: Response, status: StatusCodes, error?: any) => { 
+const errors = (res: Response, status: StatusCodes, error?: any) => {
     let message = {};
     switch (status) {
         case 301:
@@ -28,6 +28,6 @@ const errors = (res: Response, status: StatusCodes, error?: any) => {
     }
 
     res.status(status).send(message);
-    
+
 }
 export default errors;

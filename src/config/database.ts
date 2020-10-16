@@ -1,11 +1,11 @@
 const configs: any = {
   development: {
-    username: "root",
+    username: 'root',
     password: '123456',
     // database: "database_development",
-    database: "database_test",
-    host: "127.0.0.1",
-    dialect: "mysql",
+    database: 'database_test',
+    host: '127.0.0.1',
+    dialect: 'mysql',
     dialectOptions: {
       charset: 'utf8',
     },
@@ -15,11 +15,11 @@ const configs: any = {
     }
   },
   test: {
-    username: "root",
+    username: 'root',
     password: '123456',
-    database: "database_test",
-    host: "127.0.0.1",
-    dialect: "mysql",
+    database: 'database_test',
+    host: '127.0.0.1',
+    dialect: 'mysql',
     dialectOptions: {
       charset: 'utf8',
     },
@@ -28,12 +28,12 @@ const configs: any = {
     }
   },
   production: {
-    username: "root",
+    username: 'root',
     password: '123456',
-    database: "database_test",
+    database: 'database_test',
     // database: "database_production",
-    host: "127.0.0.1",
-    dialect: "mysql",
+    host: '127.0.0.1',
+    dialect: 'mysql',
     dialectOptions: {
       charset: 'utf8',
     },

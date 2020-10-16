@@ -9,11 +9,11 @@ class BaseRepository {
     }
 
     static async getAll(table: any, query: any) {
-        return await table.findAndCountAll(query);        
+        return await table.findAndCountAll(query);
     }
 
     static async getById(table: any, id: number, association: any = {}) {
-        return await table.findByPk(id, association);  
+        return await table.findByPk(id, association);
     }
 
     static async create(table: any, params: any) {
@@ -24,7 +24,7 @@ class BaseRepository {
         return await table.update(params, query);
     }
 
-    static async query(table: any, sql: any, QueryTypes = {}, sqlCount = '', QueryTypesCount = {}) { 
+    static async query(table: any, sql: any, QueryTypes = {}, sqlCount = '', QueryTypesCount = {}) {
         try {
             const results = await table.sequelize.query(sql, QueryTypes);
 

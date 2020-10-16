@@ -5,7 +5,7 @@ const { AddressModel, UserModel } = db;
 class AdressRepository {
   static getAnddress(id: number, association: any = {}) {
     return new Promise((resolve, reject) => BaseRepository
-      .getById(UserModel, id, association) 
+      .getById(UserModel, id, association)
       .then((result) => resolve(result))
       .catch((err) => reject(err)));
   }

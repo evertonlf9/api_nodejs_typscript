@@ -3,7 +3,7 @@ import { Router } from 'express';
 import Address from '../controllers/address';
 
 const router = Router();
-    
+
 router.get('/user/:id/', Address.GetAddress);
 // router.post('/user/:id/', Address.CreateAddress);
 
